@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Your Cart - FES</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body onload="renderCart()">
+    <header>
+        <div class="logo-area"><h1>FES <span style="color: #d4af37;">Cart</span></h1></div>
+        <nav><a href="index.html">Home</a> <a href="ladies-wears.html">Ladies</a></nav>
+    </header>
+
+    <section class="cart">
+        <h2>Your Shopping Bag</h2>
+        <div id="cartItems"></div>
+        <div id="cartTotal" style="margin-top: 20px; font-weight: bold; font-size: 1.5rem;"></div>
+        
+        <div id="checkoutForm" style="margin-top: 30px; display: none; background: white; padding: 20px; border-radius: 10px;">
+            <h3>Delivery Details</h3>
+            <input type="text" id="customerName" placeholder="Your Full Name" style="width: 100%; padding: 10px; margin: 10px 0;">
+            <p>Select Delivery:</p>
+            <label><input type="radio" name="delivery" value="Pickup" checked> Store Pickup (Free)</label><br>
+            <label><input type="radio" name="delivery" value="Doorstep"> Doorstep Delivery</label><br>
+            <button onclick="checkout()" style="margin-top: 20px; background: #25D366;">Order via WhatsApp ✅</button>
+        </div>
+    </section>
+
+    <script>
+        function renderCart() {
+            const list = document.getElementById("cartItems");
+            const totalDiv = document.getElementById("cartTotal");
+            const form = document.getElementById("checkoutForm");
+            
+            if (cart.length === 0) {
+                list.innerHTML = "<h3>Your cart is empty.</h3>";
+                return;
+            }
+            
+            form.style.display = "block";
+            let total = 0;
+            list.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                return `<div class="product-card" style="display:flex; justify-content:space-between; padding:15px; margin-bottom:10px;">
+                    <span>${item.name} (x${item.qty})</span>
+                    <span>₦${(item.price * item.qty).toLocaleString()}</span>
+                </div>`;
+            }).join('');
+            
+            totalDiv.innerText = "Total: ₦" + total.toLocaleString();
+        }
+    </script>
+</body>
+</html>
