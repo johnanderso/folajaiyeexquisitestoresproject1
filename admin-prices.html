@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FES - Admin Price Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body onload="loadAdminPanel()">
+    <header>
+        <div class="logo-area"><h1>FES Admin Panel</h1></div>
+        <nav><a href="index.html">View Store</a></nav>
+    </header>
+    <section class="admin-section">
+        <h2>Set Your Shop Prices</h2>
+        <p>Enter the price for each item. Items with price "0" will not show in the shop.</p>
+        <table class="admin-table">
+            <thead><tr><th>Image</th><th>Name</th><th>Price (₦)</th></tr></thead>
+            <tbody id="adminPriceList"></tbody>
+        </table>
+        <button onclick="saveAllPrices()" style="margin-top:20px; background:var(--gold);">Save All Prices & Go Live</button>
+    </section>
+</body>
+</html>
