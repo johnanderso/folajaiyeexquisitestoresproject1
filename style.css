@@ -1,0 +1,49 @@
+:root {
+  --navy: #0a2342;
+  --gold: #d4af37;
+  --white: #ffffff;
+  --bg: #f4f7f6;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+body { background: var(--bg); color: var(--navy); line-height: 1.6; }
+
+header { 
+  background: var(--navy); color: white; padding: 15px 5%; 
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--gold);
+}
+
+.logo-area { display: flex; align-items: center; }
+.logo-area h1 { font-size: 22px; text-transform: uppercase; letter-spacing: 1px; }
+
+nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; font-size: 14px; transition: 0.3s; }
+nav a:hover { color: var(--gold); }
+
+.hero { 
+  height: 50vh; background: linear-gradient(rgba(10,35,66,0.7), rgba(10,35,66,0.7)), url('IMG-20260228-WA0042.jpg') center/cover;
+  display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;
+}
+
+.products, .cart, .checkout, .admin-section { padding: 40px 5%; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+
+.product-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: 0.3s; text-align: center; }
+.product-card:hover { transform: translateY(-10px); }
+.product-card .img-box { background: #fdfbf7; height: 320px; display: flex; align-items: center; justify-content: center; }
+.product-card img { max-height: 100%; width: auto; }
+.product-info { padding: 20px; }
+.price { color: var(--gold); font-weight: bold; font-size: 1.2rem; margin: 10px 0; }
+
+button { 
+  background: var(--navy); color: white; border: none; padding: 12px; 
+  width: 100%; border-radius: 5px; cursor: pointer; font-weight: 600; transition: 0.3s;
+}
+button:hover { background: var(--gold); }
+
+.admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+.admin-table th, .admin-table td { padding: 15px; border: 1px solid #ddd; text-align: left; }
+.admin-input { padding: 8px; width: 120px; border: 1px solid var(--gold); }
+
+footer { background: #111; color: white; text-align: center; padding: 30px; margin-top: 50px; }
+                                                 
