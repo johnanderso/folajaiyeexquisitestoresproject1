@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FES - Secure Checkout</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body onload="setupCheckout()">
+    <header>
+        <div class="logo-area"><h1>FES <span style="color: #d4af37;">Secure Pay</span></h1></div>
+    </header>
+
+    <section class="checkout-container" style="max-width: 600px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <h2 style="border-bottom: 2px solid #f4f4f4; padding-bottom: 10px;">Order Summary</h2>
+        <div id="orderItems" style="margin: 20px 0;"></div>
+        
+        <div style="background: #fdfbf7; padding: 20px; border: 1px dashed var(--gold); border-radius: 10px; margin-bottom: 20px;">
+            <p style="font-weight: bold; color: var(--navy);">🏦 BANK TRANSFER DETAILS</p>
+            <p>Bank: <strong>ACCESS BANK</strong></p>
+            <p>Account Name: <strong>JAIYEOLA FOLASADE ESTHER</strong></p>
+            <p>Account Number: <strong>08066493911</strong> (Verify Name before sending)</p>
+            <h3 id="finalTotalDisplay" style="margin-top: 15px; color: var(--gold);">Total: ₦0</h3>
+        </div>
+
+        <div id="paymentForm">
+            <input type="text" id="custName" placeholder="Your Full Name" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd;">
+            <input type="text" id="custPhone" placeholder="Phone Number" required style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #ddd;">
+            <textarea id="custAddr" placeholder="Delivery Address" style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ddd;"></textarea>
+            
+            <button onclick="processOrder()" style="background: var(--navy); color: gold; font-size: 1.1rem;">CONFIRM PAYMENT & FINISH</button>
+        </div>
+    </section>
+
+    <script>
+        function setupCheckout() {
+            const list = document.getElementById("orderItems");
+            const display = document.getElementById("finalTotalDisplay");
+            let total = 0;
+            
+            list.innerHTML = cart.map(item => {
+                total += item.price * item.qty;
+                return `<p>${item.name} x ${item.qty} - ₦${(item.price * item.qty).toLocaleString()}</p>`;
+            }).join('');
+            
+            display.innerText = "Total to Pay: ₦" + total.toLocaleString();
+        }
+
+        function processOrder() {
+            const name = document.getElementById("custName").value;
+            const orderID = "FES-" + Math.floor(Math.random() * 100000);
+            
+            if(!name) { alert("Please enter your name!"); return; }
+
+            // Hide the form and show success
+            document.querySelector('.checkout-container').innerHTML = `
+                <div style="text-align:center; padding: 40px;">
+                    <h1 style="color: green;">✔ Order Received!</h1>
+                    <p style="font-size: 1.2rem; margin: 20px 0;">Order ID: <strong>${orderID}</strong></p>
+                    <p>Thank you, <strong>${name}</strong>. Your order is now being processed.</p>
+                    <p style="color: #666;">Please keep your Order ID for tracking.</p>
+                    <button onclick="window.location.href='index.html'" style="margin-top:20px;">Return to Shop</button>
+                </div>
+            `;
+            
+            // Clear the cart
+            localStorage.removeItem('fes_cart');
+        }
+    </script>
+</body>
+</html>
